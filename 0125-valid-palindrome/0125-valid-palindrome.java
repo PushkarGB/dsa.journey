@@ -1,9 +1,23 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        char[] arr = s.replaceAll("[^a-zA-Z0-9]","").toLowerCase().toCharArray();
-        for(int i = 0; i < arr.length/2; i++){
-            if(arr[i] != arr[arr.length-1-i]) return false;
-        }
+        int l = 0;
+        int r = s.length()-1;
+        while(l<r){
+            if(!Character.isLetterOrDigit(s.charAt(l))) {
+                l++; 
+                continue;
+            }
+                
+            if(!Character.isLetterOrDigit(s.charAt(r))){
+                r--; 
+                continue;
+            }
+              
+            if(Character.toUpperCase(s.charAt(l)) != Character.toUpperCase(s.charAt(r))) return false;
+            
+            l++;
+            r--;
+        }   
         return true;
     }
 }
