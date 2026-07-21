@@ -1,6 +1,9 @@
 class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
+       
+       /*
+        Brute force : 
         int[] temp = new int[k];
 
         if(k == 0 || k == n ) return;
@@ -17,6 +20,24 @@ class Solution {
             nums[i] = temp[i];
         }
 
+       */
 
+       if(k == n || k == 0) return;
+       k = k%n;
+
+       reverse(nums,0,n-1);
+       reverse(nums,0,k-1);
+       reverse(nums,k,n-1);
+    }
+
+    public void reverse(int[] arr , int start , int end){
+        int temp;
+        while(start < end){
+            temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
