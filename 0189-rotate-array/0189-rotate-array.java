@@ -1,7 +1,7 @@
 class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
-
+        /*
         int[] temp = new int[k];
 
         if(k == 0 || k == n ) return;
@@ -17,9 +17,8 @@ class Solution {
         for(int i = 0; i < k; i++){
             nums[i] = temp[i];
         }
-
+        */
        
-        /*
        if(k == n || k == 0) return;
        k = k%n;
 
@@ -37,6 +36,5 @@ class Solution {
             start++;
             end--;
         }
-        */
     }
 }
