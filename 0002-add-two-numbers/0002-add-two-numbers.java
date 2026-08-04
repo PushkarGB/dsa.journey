@@ -10,43 +10,18 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int sum = l1.val + l2.val;
-        int prev = sum / 10;
-        sum = sum % 10;
-        ListNode sumList = new ListNode(sum);
-        ListNode header = sumList;
-        l1 = l1.next;
-        l2 = l2.next;
-        while (Objects.nonNull(l1) && Objects.nonNull(l2)) {
-            sum = l1.val + l2.val + prev;
-            prev = sum / 10;
-            sum = sum % 10;
-            sumList.next = new ListNode(sum);
-            sumList = sumList.next;
-            l1 = l1.next;
-            l2 = l2.next;
-        }
-        while (Objects.nonNull(l1)) {
-            sum = l1.val + prev;
-            prev = sum / 10;
-            sum = sum % 10;
-            sumList.next = new ListNode(sum);
-            sumList = sumList.next;
-            l1 = l1.next;
-        }
-        while (Objects.nonNull(l2)) {
-            sum = l2.val + prev;
-            prev = sum / 10;
-            sum = sum % 10;
-            sumList.next = new ListNode(sum);
-            sumList = sumList.next;
-            l2 = l2.next;
-        }
-        if(prev>0){
-            sumList.next = new ListNode(prev);
-        }
-        sumList = header;
+        ListNode dummy = new ListNode(), cur = dummy;
+        int carry = 0;
 
-        return sumList;
+        while (l1 != null || l2 != null || carry > 0) {
+            int sum = carry;
+            if (l1 != null) { sum += l1.val; l1 = l1.next; }
+            if (l2 != null) { sum += l2.val; l2 = l2.next; }
+
+            cur.next = new ListNode(sum % 10);
+            carry = sum / 10;
+            cur = cur.next;
+        }
+        return dummy.next;
     }
 }
