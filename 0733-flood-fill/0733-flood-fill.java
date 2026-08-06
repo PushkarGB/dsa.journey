@@ -16,7 +16,7 @@ class Solution {
     public void dfs(int[][] image, int sr, int sc, int color,int orgColor,int[] dr,int[] dc){
 
         int n = image.length;
-        int m = image[sr].length;
+        int m = image[0].length;
 
         for(int i = 0; i < dc.length; i++){
             int r = sr+dr[i];
