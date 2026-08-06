@@ -13,8 +13,8 @@ class Solution {
 
         ListNode curr1 = list1;
         ListNode curr2 = list2;
-        ListNode tail = new ListNode(0, null);
-        ListNode dummy = new ListNode(0, tail);
+        ListNode dummy = new ListNode(-1);
+        ListNode tail = dummy;
         while (Objects.nonNull(curr1) && Objects.nonNull(curr2)) {
             if (curr1.val <= curr2.val) {
                 tail.next = curr1;
@@ -35,6 +35,6 @@ class Solution {
             curr2 = curr2.next;
             tail = tail.next;
         }
-        return dummy.next.next;
+        return dummy.next;
     }
 }
