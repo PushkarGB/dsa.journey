@@ -5,7 +5,6 @@ class Solution {
         if(orgColor == color) return image;
         int[] dr = {-1,0,1,0}; // up , right , down , left
         int[] dc = {0,1,0,-1};
-        image[sr][sc] = color;
 
         dfs(image,sr,sc,color,orgColor,dr,dc);
 
@@ -18,14 +17,17 @@ class Solution {
         int n = image.length;
         int m = image[0].length;
 
-        for(int i = 0; i < dc.length; i++){
-            int r = sr+dr[i];
-            int c = sc+dc[i];
+        if (sr < 0 || sr >= n || sc < 0 || sc >= m)
+        return;
 
-            if((r>=0) && (r<n) && (c>=0) && (c<m) && image[r][c] == orgColor){
-                image[r][c] = color;
-                dfs(image,r,c,color,orgColor,dr,dc);
-            }
+        if (image[sr][sc] != orgColor)
+        return;
+
+        image[sr][sc] = color;
+
+        // Explore neighbours
+        for (int i = 0; i < 4; i++) {
+            dfs(image,sr + dr[i],sc + dc[i],color,orgColor,dr,dc);
         }
     }
 }
