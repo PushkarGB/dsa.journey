@@ -1,36 +1,31 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        //DFS Solution
         int orgColor = image[sr][sc];
+        if(orgColor == color) return image;
+        int[] dr = {-1,0,1,0}; // up , right , down , left
+        int[] dc = {0,1,0,-1};
 
-        if (orgColor == color)
-            return image;
+        dfs(image,sr,sc,color,orgColor,dr,dc);
 
-        int[][] directions = {
-                { 0, 1 },
-                { 1, 0 },
-                { -1, 0 },
-                { 0, -1 }
-        };
-        int rows = image.length;
-        int cols = image[0].length;
-        Deque<int[]> open = new ArrayDeque<>();
+        return image;
+        
+    }
+
+    public void dfs(int[][] image, int sr, int sc, int color,int orgColor,int[] dr,int[] dc){
 
         image[sr][sc] = color;
-        open.offer(new int[] { sr, sc });
 
-        while (!open.isEmpty()) {
-            int[] curr = open.poll();
+        int n = image.length;
+        int m = image[sr].length;
 
-            for (int[] dxy : directions) {
-                int r = curr[0] + dxy[0];
-                int c = curr[1] + dxy[1];
+        for(int i = 0; i < dc.length; i++){
+            int r = sr+dr[i];
+            int c = sc+dc[i];
 
-                if (r >= 0 && r < rows && c >= 0 && c < cols && image[r][c] == orgColor) {
-                    image[r][c] = color;
-                    open.offer(new int[] { r, c });
-                }
+            if((r>=0) && (r<n) && (c>=0) && (c<m) && image[r][c] == orgColor){
+                dfs(image,r,c,color,orgColor,dr,dc);
             }
         }
-        return image;
     }
 }
