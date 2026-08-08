@@ -1,6 +1,5 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        if(s.length()<2) return s.length();
         int[] lastSeen = new int[128];
         int l = 0; 
         int maxLen = 0;
