@@ -13,7 +13,7 @@ class Solution {
         ListNode dummy = new ListNode(-1);
         ListNode ans = dummy;
         ListNode curr1 = list1 , curr2 =  list2;
-        while(Objects.nonNull(curr1) && Objects.nonNull(curr2)){
+        while(curr1!=null && curr2 != null){
             if(curr1.val<=curr2.val){
                 ans.next = curr1;
                 curr1 = curr1.next;
@@ -24,16 +24,7 @@ class Solution {
             ans = ans.next;
         }
 
-         while(Objects.nonNull(curr2)){
-            ans.next = curr2;
-            curr2 = curr2.next;
-            ans = ans.next;
-         }
-        while(Objects.nonNull(curr1)){
-            ans.next = curr1;
-            curr1 = curr1.next;
-            ans = ans.next;
-         }
+            ans.next = (curr1!=null)? curr1 : curr2;
 
          return dummy.next;
     }
