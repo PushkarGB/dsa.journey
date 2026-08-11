@@ -21,12 +21,12 @@ class Solution {
         //Idea is I don't think we can replace HashMap , but we can reduce O(k*log k) as we did in valid Anagrams problem -> by using freq array instead of sorting but we cannot add freq array as key
 
         for(String s : strs){ //O(n) 
-            int freq[] = new int[28];
+            int freq[] = new int[26];
             for(char ch : s.toCharArray()){ //O(k) + O(k) = O(k) //k - length of s
                 freq[ch-'a']+=1;
             }
             StringBuilder key = new StringBuilder();
-            for(int count : freq){ //O(28) -> O(1)
+            for(int count : freq){ //O(26) -> O(1)
                 key.append(count).append('#'); //O(1)
             }
             map.computeIfAbsent(key.toString(), k -> new ArrayList<>()).add(s); //o(1) //Space - O(n)
