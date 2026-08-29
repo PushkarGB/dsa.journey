@@ -6,18 +6,18 @@
 -- )
 -- group by customer_id
 
-select customer_id , count(*) as count_no_trans
-from Visits
-where NOT EXISTS (
-    select 1
-    From Transactions t
-    where t.visit_id = Visits.visit_id
-)
-group by customer_id
-
 -- select customer_id , count(*) as count_no_trans
 -- from Visits
--- Left Join Transactions
---     On Visits.visit_id = Transactions.visit_id
--- Where Transactions.visit_id is Null
--- Group by customer_id 
+-- where NOT EXISTS (
+--     select 1
+--     From Transactions t
+--     where t.visit_id = Visits.visit_id
+-- )
+-- group by customer_id
+
+select customer_id , count(*) as count_no_trans
+from Visits
+Left Join Transactions
+    On Visits.visit_id = Transactions.visit_id
+Where Transactions.visit_id is Null
+Group by customer_id 
