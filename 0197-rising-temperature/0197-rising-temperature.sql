@@ -5,14 +5,5 @@ where w.temperature >
     ( 
     select w1.temperature
     from Weather w1
-    where w1.recordDate < w.recordDate 
-    order by w1.recordDate Desc
-    limit 1
+    where DateDiff(w.recordDate,w1.recordDate) = 1
     ) 
-And DateDiff(w.recordDate , (
-    select w1.recordDate
-    from Weather w1
-    where w1.recordDate < w.recordDate 
-    order by w1.recordDate Desc
-    limit 1
-)) = 1;
