@@ -6,7 +6,10 @@ BEGIN
         FROM (
             Select salary,
                 DENSE_RANK() over (ORDER BY salary DESC) as rnk
-            From Employee
+            From (
+                Select Distinct salary
+                from Employee
+            ) s
         ) t
         Where t.rnk = N
   );
