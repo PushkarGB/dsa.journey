@@ -2,10 +2,7 @@
 select 
     p.project_id ,
     ROUND (
-        COALESCE(
-            AVG(e.experience_years),
-            0
-        ),
+        AVG(e.experience_years),
         2
     ) as average_years
 from project p join employee e
