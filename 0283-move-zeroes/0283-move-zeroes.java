@@ -1,19 +1,13 @@
 class Solution {
-    public void moveZeroes(int[] arr) {
-            int n = arr.length;
-            
-            if(n==0) return;
-            
-            int lastNZ = -1;
-            for(int i = 0; i<n; i++){
-                if(arr[i]!=0){
-                    lastNZ++;
-                    int tmp = arr[lastNZ];
-                    arr[lastNZ] = arr[i];
-                    arr[i] = tmp;
-                }                    
+    public void moveZeroes(int[] nums) {
+        int nz = -1;
+        if(nums.length < 2) return;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i]!=0) {
+                nums[++nz] = nums[i];
+                if(nz!=i) 
+                    nums[i] = 0;
             }
-
-            
+        }
     }
 }
