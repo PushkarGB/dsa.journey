@@ -5,9 +5,10 @@ class Solution {
         for(int i = 0; i < nums.length; i++){
             if(nums[i]!=0) {
                 nums[++nz] = nums[i];
-                if(nz!=i) 
-                    nums[i] = 0;
             }
+        }
+        for(int i = nz+1; i < nums.length; i++){
+            nums[i] = 0;
         }
     }
 }
