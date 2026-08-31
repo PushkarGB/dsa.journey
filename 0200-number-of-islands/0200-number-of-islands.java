@@ -1,31 +1,32 @@
 class Solution {
     public int numIslands(char[][] grid) {
-
         int m = grid.length;
-        //Directions - left,up,right,down
-        int[] dx = { 0, -1, 0, 1 };
-        int[] dy = { -1, 0, 1, 0 };
-        int islands = 0;
-
-        for (int i = 0; i < m; i++) {
-            int n = grid[i].length;
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '1') {
-                    islands++;
-                    completeIsland(grid, i, j, m, dx, dy);
+        int n = grid[0].length;
+        int island = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == '1'){
+                    coverLand(grid,i,j,m,n);
+                    island++;
                 }
             }
         }
 
-        return islands;
+        return island;
     }
 
-    public void completeIsland(char[][] grid, int i, int j, int m, int[] dx, int[] dy) {
-        if (i < 0 || i >= m || j < 0 || j >= grid[i].length || grid[i][j] == '0')
+    private void coverLand(char[][] grid,int r,int c,int m,int n){
+        
+        if(r < 0 || r >= m || c < 0 || c >= n)
             return;
-        grid[i][j] = '0';
-        for (int k = 0; k < 4; k++) {
-            completeIsland(grid, i + dx[k], j + dy[k],m, dx,dy);
-        }
+
+        if(grid[r][c] == '0')
+            return;
+        
+        grid[r][c] = '0';
+        coverLand(grid,r-1,c,m,n); //Up
+        coverLand(grid,r+1,c,m,n); //Down
+        coverLand(grid,r,c+1,m,n); //Right
+        coverLand(grid,r,c-1,m,n); //Left
     }
 }
