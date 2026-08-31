@@ -1,6 +1,8 @@
 # Write your MySQL query statement below
 select 
-    t.*,
+    x,
+    y,
+    z,
     CASE
         WHEN x > 0
          AND y > 0
@@ -11,5 +13,5 @@ select
         THEN 'Yes'
         ELSE 'No'    
     END AS triangle
-from Triangle t;
+from Triangle;
 
